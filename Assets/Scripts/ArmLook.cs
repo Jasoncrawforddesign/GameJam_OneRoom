@@ -34,13 +34,13 @@ public class ArmLook : MonoBehaviour {
 		Vector3 CheckMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 		if (CheckMousePos.x < .5f)
 		{
-			armSprite.GetComponent<SpriteRenderer>().flipY = true;
-			playerSprite.GetComponent<SpriteRenderer>().flipX = true;
+			armSprite.GetComponent<SpriteRenderer>().flipX = true;
+			//playerSprite.GetComponent<SpriteRenderer>().flipX = true;
 		}
 		else if (CheckMousePos.x > .5f)
 		{
-			armSprite.GetComponent<SpriteRenderer>().flipY = false;
-			playerSprite.GetComponent<SpriteRenderer>().flipX = false;
+			armSprite.GetComponent<SpriteRenderer>().flipX = false;
+			//playerSprite.GetComponent<SpriteRenderer>().flipX = false;
 		}
 
 

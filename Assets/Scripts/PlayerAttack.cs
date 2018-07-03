@@ -38,6 +38,9 @@ public class PlayerAttack : MonoBehaviour {
 	private GameObject endOfArm;
 
 	[SerializeField]
+	private GameObject armSprite;
+
+	[SerializeField]
 	private float fireRate;
 
 
@@ -64,10 +67,11 @@ public class PlayerAttack : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
-
+			
 			SpawnWeapon();
 			Debug.Log("Thrown");
 			countDown = countDownStart;
+			
 
 		}
 
@@ -92,7 +96,7 @@ public class PlayerAttack : MonoBehaviour {
 		Debug.Log("Weapon Moves....");
 
 		GameObject Weapon = Instantiate(weapon, endOfArm.transform.position, endOfArm.transform.rotation) as GameObject;
-		Weapon.GetComponent<Rigidbody2D>().AddForce(endOfArm.transform.right * weaponSpeed, ForceMode2D.Impulse);
+		Weapon.GetComponent<Rigidbody2D>().AddForce(endOfArm.transform.up * - weaponSpeed, ForceMode2D.Impulse);
 
 		//destroy weapon after weaponLifeTime;
 		Destroy(Weapon, weaponLifeTime);
