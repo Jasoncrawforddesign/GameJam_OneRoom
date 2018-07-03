@@ -26,6 +26,13 @@ public class PlayerAttack : MonoBehaviour {
 	[SerializeField]
 	private GameObject weapon;
 
+	[SerializeField]
+	private float weaponSpeed;
+
+	//Life time of the weapon until destroyed
+	[SerializeField]
+	private float weaponLifeTime;
+
 	// End of the arm, where the bullet is spawned from//
 	[SerializeField]
 	private GameObject endOfArm;
@@ -43,10 +50,14 @@ public class PlayerAttack : MonoBehaviour {
 	void Update() {
 		countDown += Time.deltaTime;
 
-		//if(shootAllowed == true)
-		//{
-		ShootGun();
-		//}
+		
+		//ShootGun();
+		
+
+		if (shootAllowed == true)
+		{
+			ShootGun();
+		}
 	}
 
 	public void ShootGun()
@@ -79,6 +90,27 @@ public class PlayerAttack : MonoBehaviour {
 	{
 
 		Debug.Log("Weapon Moves....");
+
+		GameObject Weapon = Instantiate(weapon, endOfArm.transform.position, endOfArm.transform.rotation) as GameObject;
+		Weapon.GetComponent<Rigidbody2D>().AddForce(endOfArm.transform.right * weaponSpeed, ForceMode2D.Impulse);
+
+		//destroy weapon after weaponLifeTime;
+		Destroy(Weapon, weaponLifeTime);
+
+		
+	}
+
+	public void ShootIsAllowed()
+	{
+
+		if (shootAllowed == false)
+		{
+			shootAllowed = true;
+		}
+		else if (shootAllowed == true)
+		{
+			shootAllowed = false;
+		}
 	}
 
 }
